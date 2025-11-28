@@ -2,9 +2,9 @@ import React from "react";
 
 const API_key = "AIzaSyC_T56zHD0P7_bI1MwqhUjBNCpO46JlbC8";
 
-const Authenticate= async (email, password)=>{
-    // let authEndpoint = isSignUp? "signUp" :"signInWithPassword";
-    let authEndpoint ="signUp";
+const Authenticate= async (email, password, authmode )=>{
+    let authEndpoint = authmode? "signUp" :"signInWithPassword";
+    
     try{
         const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:${authEndpoint}?key=${API_key}`, {
             method:'POST',
@@ -20,6 +20,7 @@ const Authenticate= async (email, password)=>{
         
         const data = await res.json();
         if(res.ok){
+            localStorage.setItem('idToken', data.idToken);
             return {data: data, ok: true};
         }else{
             let errorMessage = "Authentication Failed!";
