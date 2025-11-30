@@ -1,0 +1,14 @@
+.welcome-ui{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 10px;
+}
+.compose-btn{
+    position:fixed;
+    height: auto;
+    width: auto;
+    right: 50px;
+    bottom: 50px;
+    padding: 15px 25px;
+}

@@ -3,19 +3,21 @@ import { Button, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap
 import ReactQuill from 'react-quill-new';
 import "react-quill-new/dist/quill.core.css";
 import "./Mail.css";
-import sendMail from '../API/SendMail';
+import { sendMail } from '../API/SendMail';
 
 const Mail = () => {
     const emailRef= useRef();
     const subjectRef= useRef();
     const [value, setValue] = useState("");
-    
+    const loggedInUser = localStorage.getItem("userId");
+
     const submitHandler= async (e) =>{
         e.preventDefault();
 
         const mailData = {
-            recipientEmail : emailRef.current.value,
-            Subject : subjectRef.current.value,
+            to : emailRef.current.value,
+            from: loggedInUser,
+            subject : subjectRef.current.value,
             mailContent : value,
         }
         const result = await sendMail(mailData);
@@ -35,7 +37,7 @@ const Mail = () => {
             
         <ReactQuill className="quill-editor" theme='snow' style={{ border:"none" }} value={value} onChange={setValue} />
 
-        <Button type='submit' variant='primary'>Send</Button>
+        <Button type='submit' variant='primary' className='sendMailBtn'>Send</Button>
         </Form>
     
     </div>

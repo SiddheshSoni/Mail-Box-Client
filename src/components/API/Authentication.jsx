@@ -21,7 +21,7 @@ const Authenticate= async (email, password, authmode )=>{
         const data = await res.json();
         if(res.ok){
             localStorage.setItem('idToken', data.idToken);
-            const userId = email.split("@")[0];
+            const userId = email.replace(/[.#$[\]]/g, "_");
             localStorage.setItem('user', userId);
             return {data: data, ok: true};
         }else{

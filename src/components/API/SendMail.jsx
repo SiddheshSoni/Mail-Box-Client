@@ -29,16 +29,18 @@ const RequestWrapper = async (path = 'mails.json', { method= 'GET', body = null}
     }catch(err){
         console.log(err);
     };
-}
-const idToken = localStorage.getItem("user");
+};
 
 
-const sendMail = async (data) => {
-    return await RequestWrapper(`mails/${idToken}.json`,{method:'POST', body: data});
+const sendMail = async (mail) => {
+    const recipientKey = mail.to.replace(/[.#$[\]]/g, "_");
+
+    return await RequestWrapper(`mails/${recipientKey}.json`,{method:'POST', body: mail});
 };
 
 const getMail = async () => {
-    return await RequestWrapper(`mails/${idToken}.json`,{method:'GET'});
+    const userKey = localStorage.getItem("user");
+    return await RequestWrapper(`mails/${userKey}.json`,{method:'GET'});
 };
 
 // const DeleteExpenseDB = async (id) =>{
