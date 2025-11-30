@@ -1,0 +1,26 @@
+.mail-editor{
+    margin: 10px 20px;
+    padding: 5px;
+    border: 1px solid rgb(165, 155, 155);
+}
+.form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds some space between the label and input */
+    margin-bottom: 1rem;
+}
+.form-group-inline .form-control{
+    border: none;
+    border-radius: 0;
+    border-bottom: 0.5px solid rgb(122, 119, 119);
+}
+.quill-editor{
+    min-height: 70vh;
+    
+}
+
+.btn-primary{
+    border-radius: 0;
+    padding: 5px 25px;
+    margin: 20px;
+}

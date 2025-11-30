@@ -21,6 +21,8 @@ const Authenticate= async (email, password, authmode )=>{
         const data = await res.json();
         if(res.ok){
             localStorage.setItem('idToken', data.idToken);
+            const userId = email.split("@")[0];
+            localStorage.setItem('user', userId);
             return {data: data, ok: true};
         }else{
             let errorMessage = "Authentication Failed!";
