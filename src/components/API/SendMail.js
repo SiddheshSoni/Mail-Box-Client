@@ -1,4 +1,4 @@
-import React from 'react'
+
 const BASE_URL = `https://ecommerce-site-9c080-default-rtdb.asia-southeast1.firebasedatabase.app/`;
 
 const RequestWrapper = async (path = 'mails.json', { method= 'GET', body = null} ={})=>{
@@ -43,12 +43,14 @@ const getMail = async () => {
     return await RequestWrapper(`mails/${userKey}.json`,{method:'GET'});
 };
 
-// const DeleteExpenseDB = async (id) =>{
-//     return await RequestWrapper(`expenses/${id}.json` ,{ method:'DELETE'});
-// }
+const DeleteMail = async (id) =>{
+    const userKey = localStorage.getItem("user");
+    return await RequestWrapper(`mails/${userKey}/${id}.json` ,{ method:'DELETE'});
+}
 
-// const EditExpenseDB = async (id) =>{
-//     return await RequestWrapper(`expenses/${id}.json`, { method:'PUT'});
-// }
+const UpdateMail = async (id, update={isRead: true}) =>{
+    const userKey = localStorage.getItem("user");
+    return await RequestWrapper(`mails/${userKey}/${id}.json` ,{ method:'PATCH', body: update})
+}
 
-export {sendMail, getMail};
+export {sendMail, getMail, DeleteMail, UpdateMail};

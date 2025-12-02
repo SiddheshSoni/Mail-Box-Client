@@ -1,15 +1,17 @@
 import React from 'react';
 import { Navbar, Nav, Button, Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
+import { authActions } from '../store/authSlice';
 
 const Navigation = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const logoutHandler = () => {
-        // Clear user data from local storage
+        dispatch(authActions.onLogout());
         localStorage.removeItem('idToken');
         localStorage.removeItem('user');
-        // Navigate back to the signup/login page
         navigate('/');
     };
 

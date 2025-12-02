@@ -4,10 +4,12 @@ import Sentbox from '../Mailbox/Sentbox';
 import { Button, Col, Row } from 'react-bootstrap';
 import "./Welcome.css"; 
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 const Welcome = () => {
   const [showInbox, setShowInbox] = useState(false);
   const [showOutbox, setShowOutbox] = useState(false);
   const navigate = useNavigate();
+  const unread = useSelector(state => state.mails.totalUnread);
 
   return (
     <>
@@ -19,7 +21,7 @@ const Welcome = () => {
           <Button className="m-1"variant='info' onClick={()=>{
             setShowInbox(prev => !prev)
             setShowOutbox(false);
-          }}>Inbox</Button>
+          }}>Inbox {unread}</Button>
           <Button className="m-1" variant='info' onClick={()=>{
             setShowOutbox(prev => !prev);
             setShowInbox(false);

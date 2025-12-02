@@ -1,0 +1,39 @@
+.mailbox{
+    width: 100%;
+    position: relative;
+}
+.inbox-mail-title{
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family:sans-serif;
+    border-bottom: 1px solid rgb(173, 138, 169);
+    padding:3px;
+    padding-left: 10px;
+    background-color: aliceblue;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+#delete-btn{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#delete-btn:hover{
+    opacity: 60%;
+}
+i{
+    padding:0px 5px 0px 0px;
+}
+.fa-circle{
+    transform: scale(0.8);
+    color: rgb(177, 113, 236);
+}
+.isRead{
+    visibility: hidden;
+}
+.read{
+    font-weight: 200;
+}

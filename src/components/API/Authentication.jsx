@@ -1,4 +1,3 @@
-import React from "react";
 
 const API_key = "AIzaSyC_T56zHD0P7_bI1MwqhUjBNCpO46JlbC8";
 

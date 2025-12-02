@@ -4,11 +4,14 @@ import Signup from './components/Pages/SignupPage'
 import Welcome from './components/Pages/Welcome'
 import Mail from './components/Pages/Mail'
 import Navigation from './components/UI/Navigation'
-import ViewMail from './components/Pages/ViewMail'
+
+import { useSelector } from 'react-redux'
+import ViewMail from './components/MailBox/ViewMail'
 
 function App() {
   const location = useLocation();
   const idToken = localStorage.getItem('idToken');
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn );
 
  const showNav = idToken && (location.pathname === '/Welcome' || location.pathname === '/mail');
 
@@ -17,10 +20,11 @@ function App() {
     <>
       {showNav && <Navigation />}
       <Routes>
-        <Route path="/" element={ <Signup />} />
-        <Route path="/Welcome" element={ <Welcome />} />
-        <Route path="/mails/:mailId" element={ <ViewMail />} />
-        <Route path="/mail" element={ <Mail />} />
+        { !isLoggedIn && <Route path="/" element={ <Signup />} />}
+        { isLoggedIn && <Route path="/Welcome" element={ <Welcome />} />}
+        { isLoggedIn && <Route path="/mails/:mailId" element={ <ViewMail/>} />}
+        { isLoggedIn && <Route path="/mail" element={ <Mail />} />}
+        <Route path="*" element={ <Signup />} />
       </Routes>
     </>
   )

@@ -49,18 +49,17 @@ const Signup = () => {
                 <Row className='mb-3'>
                     <FormControl placeholder='Email' type='email' ref={emailRef} required/>
                 </Row>
-                <Row className='mb-3'>
-                    
-                    <FormControl className='password-input' placeholder='Password' type={showPass?'text':'password'} ref={passwordRef} required/>
-                    <button className="d-none toggle-show-btn" onClick={() => setShowPass(prev => !prev)}>
-                        show
-                    </button>
+                <Row className='mb-3 password-field'>
+                    <FormControl className='password-input ' placeholder='Password' type={showPass?'text':'password'} ref={passwordRef} required/>
+                    <span className='toggle-show-btn' onClick={() => setShowPass(prev => !prev)}>
+                        <i className={showPass ? "far fa-eye-slash" : "far fa-eye"}></i>
+                    </span>
                 </Row>
-                {isSignup && <Row className='mb-3'>
-                    <FormControl className='password-input'  placeholder='confirm Password' type={showConfirmPass?'text':'password'} ref={confirmPasswordRef} required/>
-                    <button className="d-none toggle-show-btn" onClick={() => setShowConfirmPass(prev => !prev)}>
-                        show
-                    </button>
+                {isSignup && <Row className='mb-3 password-field'>
+                        <FormControl className='password-input'  placeholder='confirm Password' type={showConfirmPass?'text':'password'} ref={confirmPasswordRef} required/>
+                        <span className='toggle-show-btn' onClick={() => setShowConfirmPass(prev => !prev)}>
+                            <i className={showConfirmPass ? "far fa-eye-slash" : "far fa-eye"}></i>
+                        </span>
                 </Row>}
                 <Row className='mt-4 mb-3'>
                     <Button type='submit' variant="primary">{isSignup ? "Sign up" : "Login"}</Button>

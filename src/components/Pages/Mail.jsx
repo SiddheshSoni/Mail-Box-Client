@@ -9,7 +9,7 @@ const Mail = () => {
     const emailRef= useRef();
     const subjectRef= useRef();
     const [value, setValue] = useState("");
-    const loggedInUser = localStorage.getItem("userId");
+    const loggedInUser = localStorage.getItem("user");
 
     const submitHandler= async (e) =>{
         e.preventDefault();
@@ -19,7 +19,9 @@ const Mail = () => {
             from: loggedInUser,
             subject : subjectRef.current.value,
             mailContent : value,
-        }
+            isRead: false,
+        };
+        
         const result = await sendMail(mailData);
         console.log(result);
     };

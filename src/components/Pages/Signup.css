@@ -28,3 +28,22 @@
     padding: 10px 20px;       
     border-radius: 8px;
 }
+
+.signup-option p {
+    margin: 0;
+    cursor: pointer;
+}
+
+.password-field{
+    position: relative;
+}
+
+.toggle-show-btn{
+    position: absolute;
+    height: auto;
+    width: auto;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

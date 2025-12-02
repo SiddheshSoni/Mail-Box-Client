@@ -5,7 +5,6 @@ import { Container, Card, Alert } from 'react-bootstrap';
 
 const ViewMail = () => {
     const { mailId } = useParams();
-    console.log(mailId);
     const inbox = useSelector(state => state.mails.inbox);
     
     const mail = inbox.find(m => m.id === mailId);
