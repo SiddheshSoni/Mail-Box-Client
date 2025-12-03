@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
 import { Container, Card, Alert } from 'react-bootstrap';
 
 const ViewMail = () => {
-    const { mailId } = useParams();
-    const inbox = useSelector(state => state.mails.inbox);
+    // const mailId = props.id;
+    const mail = useSelector(state => state.ui.selectedMail);
     
-    const mail = inbox.find(m => m.id === mailId);
+    // const mail = props.selectedMail;
 
     if (!mail) {
         return (

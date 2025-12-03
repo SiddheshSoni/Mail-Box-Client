@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router'
+import { Route, Routes, useLocation} from 'react-router'
 import './App.css'
 import Signup from './components/Pages/SignupPage'
 import Welcome from './components/Pages/Welcome'
@@ -13,18 +13,21 @@ function App() {
   const idToken = localStorage.getItem('idToken');
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn );
 
- const showNav = idToken && (location.pathname === '/Welcome' || location.pathname === '/mail');
+  const showNav = idToken && (location.pathname === '/Welcome' || location.pathname === '/mail');
 
  
   return (
     <>
       {showNav && <Navigation />}
       <Routes>
-        { !isLoggedIn && <Route path="/" element={ <Signup />} />}
+        { isLoggedIn && <Route path="*" element={ <Welcome />}></Route> }
+
         { isLoggedIn && <Route path="/Welcome" element={ <Welcome />} />}
         { isLoggedIn && <Route path="/mails/:mailId" element={ <ViewMail/>} />}
         { isLoggedIn && <Route path="/mail" element={ <Mail />} />}
-        <Route path="*" element={ <Signup />} />
+        { !isLoggedIn && <Route path="*" element={ <Signup />} /> }
+        <Route path="/" element={ <Signup />} />
+        
       </Routes>
     </>
   )

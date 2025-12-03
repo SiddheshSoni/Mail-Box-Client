@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['quill'],
   },
+   test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.js'], // or './vitest.setup.ts'
+  },
 })
