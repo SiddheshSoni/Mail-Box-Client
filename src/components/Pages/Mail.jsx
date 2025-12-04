@@ -3,7 +3,7 @@ import { Button, Form, FormControl, FormGroup, FormLabel } from 'react-bootstrap
 import ReactQuill from 'react-quill-new';
 import "react-quill-new/dist/quill.core.css";
 import "./Mail.css";
-import { sendMail } from '../API/SendMail';
+import { receiverMailRef, senderMailRef, storeMail } from '../API/SendMail';
 
 const Mail = () => {
     const emailRef= useRef();
@@ -15,15 +15,24 @@ const Mail = () => {
         e.preventDefault();
 
         const mailData = {
-            to : emailRef.current.value,
+            to : emailRef.current.value.toLowerCase(),
             from: loggedInUser,
             subject : subjectRef.current.value,
             mailContent : value,
             isRead: false,
         };
+        console.log(mailData);
         
-        const result = await sendMail(mailData);
-        console.log(result);
+        const res = await storeMail(mailData); // stores id(key) of email sent to Firebase. 
+        const email_ID = res.data.name;
+
+        const receiverKey = mailData.to.replace(/[.#$[\]]/g, "_"); 
+        const senderKey = mailData.from.replace(/[.#$[\]]/g, "_"); 
+        
+        console.log(receiverKey);
+        await receiverMailRef(receiverKey, email_ID);
+        await senderMailRef(senderKey, email_ID);
+
     };
   return (
     <div className='mail-editor'>

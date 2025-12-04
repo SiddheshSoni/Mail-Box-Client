@@ -16,7 +16,7 @@ const Signup = () => {
     const submitHandler= async (e)=>{
         e.preventDefault();
 
-        const enteredEmail = emailRef.current.value;
+        const enteredEmail = emailRef.current.value.toLowerCase();
         const enteredPassword = passwordRef.current.value;
         
         if(isSignup){

@@ -21,12 +21,12 @@ function App() {
       {showNav && <Navigation />}
       <Routes>
         { isLoggedIn && <Route path="*" element={ <Welcome />}></Route> }
+        <Route path="/" element={ <Signup />} />
 
         { isLoggedIn && <Route path="/Welcome" element={ <Welcome />} />}
         { isLoggedIn && <Route path="/mails/:mailId" element={ <ViewMail/>} />}
         { isLoggedIn && <Route path="/mail" element={ <Mail />} />}
         { !isLoggedIn && <Route path="*" element={ <Signup />} /> }
-        <Route path="/" element={ <Signup />} />
         
       </Routes>
     </>

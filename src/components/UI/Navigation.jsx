@@ -16,7 +16,7 @@ const Navigation = () => {
     };
 
     return (
-        <Navbar bg="light" className="mb-4">
+        <Navbar bg="light" className="mb-2">
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">

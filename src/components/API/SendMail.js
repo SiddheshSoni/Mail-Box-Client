@@ -31,26 +31,49 @@ const RequestWrapper = async (path = 'mails.json', { method= 'GET', body = null}
     };
 };
 
-
-const sendMail = async (mail) => {
-    const recipientKey = mail.to.replace(/[.#$[\]]/g, "_");
-
-    return await RequestWrapper(`mails/${recipientKey}.json`,{method:'POST', body: mail});
+const storeMail = async (mail) => {
+    return await RequestWrapper(`emails.json`,{method:'POST', body: mail});
+};
+const receiverMailRef = async (receiverKey, emailId) => {
+    return RequestWrapper(`users/${receiverKey}/inbox/${emailId}.json`, {
+        method: "PUT",
+        body: true
+    });
+};
+const senderMailRef= async (senderKey, emailId) => {
+    return RequestWrapper(`users/${senderKey}/sent/${emailId}.json`, {
+        method: "PUT",
+        body: true
+    });
 };
 
-const getMail = async () => {
+const getMails = async () => {
+    // const userKey = localStorage.getItem("user");
+    return await RequestWrapper(`emails.json`,{method:'GET'});
+};
+const getInboxMails = async () => {
     const userKey = localStorage.getItem("user");
-    return await RequestWrapper(`mails/${userKey}.json`,{method:'GET'});
+    return await RequestWrapper(`users/${userKey}/inbox.json`,{method:'GET'});
+};
+
+const getSentMails = async () => {
+    const userKey = localStorage.getItem("user");
+    return await RequestWrapper(`users/${userKey}/sent.json`,{method:'GET'});
 };
 
 const DeleteMail = async (id) =>{
     const userKey = localStorage.getItem("user");
-    return await RequestWrapper(`mails/${userKey}/${id}.json` ,{ method:'DELETE'});
+    return await RequestWrapper(`users/${userKey}/inbox/${id}.json` ,{ method:'DELETE'});
 }
 
 const UpdateMail = async (id, update={isRead: true}) =>{
-    const userKey = localStorage.getItem("user");
-    return await RequestWrapper(`mails/${userKey}/${id}.json` ,{ method:'PATCH', body: update})
+    return await RequestWrapper(`emails/${id}.json` ,{ method:'PATCH', body: update})
 }
 
-export {sendMail, getMail, DeleteMail, UpdateMail};
+export { storeMail, getMails, getInboxMails, getSentMails, receiverMailRef, senderMailRef, DeleteMail, UpdateMail};
+
+// original flow work for sent box
+// const sendMail = async (mail) => {
+//     const recipientKey = mail.to.replace(/[.#$[\]]/g, "_");
+//     return await RequestWrapper(`mails/${recipientKey}.json`,{method:'POST', body: mail});
+// }; 
