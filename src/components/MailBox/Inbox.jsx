@@ -12,44 +12,45 @@ const Inbox = () => {
 
     const allMails = useSelector(state => state.mails.mails);
     const inbox = useSelector(state => state.mails.inbox);
-    // const selectedMail = null;
     const selectedMail = useSelector(state => state.ui.selectedMail);
 
     useEffect(()=>{
         const fetchMails = async ()=>{
-            const result = await getMails();
-             if(result.ok && result.data){
-                const mails = Object.keys(result.data).map(id =>({
-                    id, ...result.data[id]
-                })).reverse();
-                dispatch(mailActions.setMails(mails));
+            console.log("render");
+            try {
+                const result = await getMails();
+                 if(result.ok && result.data){
+                    const mails = Object.keys(result.data).map(id =>({
+                        id, ...result.data[id]
+                    })).reverse();
+                    dispatch(mailActions.setMails(mails));
+                }
+            } catch (error) {
+                console.error("Failed to fetch mails:", error);
             }
         }
         fetchMails();
-    },[dispatch]);
+        const intervalId = setInterval(fetchMails, 2000);
 
+        return () => clearInterval(intervalId); 
+    },[dispatch]);
+    
     useEffect(()=>{
         const fetchInboxMails = async()=>{
-
             const result = await getInboxMails();
-    
+            
             if(result.ok && result.data){
-                // We get the IDs from the API
                 const mail_ids = Object.keys(result.data);
-
-                // And immediately use them to find the full mail objects from allMails.
-                // No need to store the IDs separately in Redux.
                 const inboxMails = mail_ids.map(id => {
                     const mailData = allMails.find(mail => mail.id === id);
                     return { id, ...mailData };
-                }).filter(mail => mail.subject); // Filter out any potential misses
+                });
                 
                 dispatch(mailActions.setInboxMails(inboxMails));
             }
         }
         
         fetchInboxMails();
-        
     },[dispatch, allMails]);
 
     const viewMailHandler= async (id)=>{

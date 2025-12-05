@@ -10,7 +10,7 @@ import { uiActions } from '../store/uiSlice';
 const Welcome = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showInbox, setShowInbox] = useState(false);
+  const [showInbox, setShowInbox] = useState(true);
   const [showOutbox, setShowOutbox] = useState(false);
   const unread = useSelector(state => state.mails.totalUnread);
  
