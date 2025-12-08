@@ -4,7 +4,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    background-color: rgb(250, 234, 234);
+    /* background-color: rgb(250, 234, 234); */
+    /* background-color: #FBFBFB; */
 }
 
 .signup-card{

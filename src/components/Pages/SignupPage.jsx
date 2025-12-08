@@ -3,10 +3,12 @@ import { Alert, Button, Form, FormControl, FormLabel, Row } from 'react-bootstra
 import "./Signup.css"
 import Authenticate from '../API/Authentication';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/authSlice';
 
 const Signup = () => {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
@@ -33,13 +35,13 @@ const Signup = () => {
         if(!result.ok){
             setError(result.error);
         } else{
-            navigate("/Welcome");
-            console.log("user has successfullt Signed up!");
+            dispatch(authActions.onLogin(result.data.idToken));
+            await navigate("/Welcome");
         }
 
     } 
     const [showPass, setShowPass] = useState(false);
-    const [showConfirmPass, setShowConfirmPass] = useState(false);
+    // const [showConfirmPass, setShowConfirmPass] = useState(false);
   return (
     <>
     <div className='signup'>
@@ -56,9 +58,9 @@ const Signup = () => {
                     </span>
                 </Row>
                 {isSignup && <Row className='mb-3 password-field'>
-                        <FormControl className='password-input'  placeholder='confirm Password' type={showConfirmPass?'text':'password'} ref={confirmPasswordRef} required/>
-                        <span className='toggle-show-btn' onClick={() => setShowConfirmPass(prev => !prev)}>
-                            <i className={showConfirmPass ? "far fa-eye-slash" : "far fa-eye"}></i>
+                        <FormControl className='password-input'  placeholder='confirm Password' type={showPass?'text':'password'} ref={confirmPasswordRef} required/>
+                        <span className='toggle-show-btn' onClick={() => setShowPass(prev => !prev)}>
+                            <i className={showPass ? "far fa-eye-slash" : "far fa-eye"}></i>
                         </span>
                 </Row>}
                 <Row className='mt-4 mb-3'>

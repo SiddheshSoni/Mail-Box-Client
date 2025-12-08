@@ -1,0 +1,21 @@
+.view-mail{
+    margin: 0;
+    padding: 0;
+    text-align: start;
+    background-color: aliceblue;
+    
+}
+.view-mail-from{
+    border-bottom: 1px solid #0dcaf0;
+    padding: 2px;
+    padding-left: 10px;  
+}
+.view-mail-body{
+    padding-left: 10px;  
+    /* background-color: aliceblue; */
+    
+}
+.view-mail-subject{
+    border-bottom: 1px solid #0dcaf0;
+    padding-left: 10px;
+}

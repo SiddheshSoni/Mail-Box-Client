@@ -1,12 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Card, Alert } from 'react-bootstrap';
-
+import "./ViewMail.css"
 const ViewMail = () => {
-    // const mailId = props.id;
     const mail = useSelector(state => state.ui.selectedMail);
-    
-    // const mail = props.selectedMail;
 
     if (!mail) {
         return (
@@ -17,18 +14,19 @@ const ViewMail = () => {
     }
 
     return (
-        <Container className="mt-4">
-            <Card>
-                <Card.Header>
-                    <strong>From:</strong> {mail.from}
-                </Card.Header>
-                <Card.Body>
-                    <Card.Title>Subject: {mail.subject}</Card.Title>
-                    <hr />
-                    <div dangerouslySetInnerHTML={{ __html: mail.mailContent }} />
-                </Card.Body>
-            </Card>
-        </Container>
+        <div>
+            <div className="view-mail">
+                <div className='view-mail-from'>
+                    <span className=' fw-medium opacity-75'>From:</span> {mail.from}
+                </div>
+                <div  >
+                    <div className='view-mail-subject '>
+                        <span className='fw-medium opacity-75'>Subject:</span> {mail.subject}
+                    </div>
+                    <div className='view-mail-body' dangerouslySetInnerHTML={{ __html: mail.mailContent }} />
+                </div>
+            </div>
+        </div>
     );
 };
 

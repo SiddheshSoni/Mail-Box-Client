@@ -2,10 +2,11 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    background-color: #B8FFF9;
+    /* height: 100%; */
 }
 .inbox-container{
     border-top: 1px solid #0dcaf0; /*change color*/
-    background-color: aliceblue;
 }
 .compose-btn{
     position:fixed;
@@ -16,16 +17,19 @@
     padding: 15px 25px;
 }
 .inbox-navigator{
-    background-color: aqua;
+    background-color: #85F4FF;
     padding: 0;
-    min-height: 75vh;
+    min-height: 81vh;
 }
 .inbox-btn{
-    background-color: aqua;
+    background-color: #85F4FF;
     border-radius: 0;
     border-left: 0px;
     border-right: 0px;
 }
 .inbox-btn:focus{
-    background-color: aliceblue;
+    background-color: #B8FFF9;
+}
+.inbox-btn:hover{
+    background-color: #42C2FF;
 }

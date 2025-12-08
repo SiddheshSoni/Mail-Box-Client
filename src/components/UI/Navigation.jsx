@@ -24,9 +24,9 @@ const Navigation = () => {
                         <Nav.Link as={Link} to="/Welcome">Welcome</Nav.Link>
                         <Nav.Link as={Link} to="/mail">Mail</Nav.Link>
                     </Nav>
-                    <Button variant="outline-danger" onClick={logoutHandler}>Logout</Button>
                 </Navbar.Collapse>
             </Container>
+            <Button className='' variant="outline-danger" onClick={logoutHandler}>Logout</Button>   
         </Navbar>
     );
 };

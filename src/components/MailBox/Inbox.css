@@ -12,9 +12,12 @@
     /* border-top: 1px solid aliceblue; */
     padding:5px;
     padding-left: 10px;
-    background-color: aliceblue;
+    background-color: #B8FFF9;
     cursor: pointer;
     /* margin-bottom: 5px; */
+}
+.inbox-mail-title:hover{
+    background-color: #42C2FF;
 }
 
 #delete-btn{

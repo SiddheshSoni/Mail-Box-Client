@@ -26,9 +26,9 @@ const Welcome = () => {
   };
   return (
     <>
-    <div className='d-block bg-body-secondary fs-1 p-4 fw-bold text-center'>Welcome to Mail Box Client!</div>
+    <div className='d-block fs-1 p-4 fw-bold text-center' style={{"background":"#9ee8f5ff"}}>Welcome to Mail Box Client!</div>
     
-    <div className='m-3 '>
+    <div className=''>
       <Row className='welcome-ui '>
         <Col sm={3} className='inbox-navigator'>
         <div className='d-flex flex-column '>

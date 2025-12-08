@@ -20,7 +20,6 @@ function App() {
     <>
       {showNav && <Navigation />}
       <Routes>
-        { isLoggedIn && <Route path="*" element={ <Welcome />}></Route> }
         <Route path="/" element={ <Signup />} />
 
         { isLoggedIn && <Route path="/Welcome" element={ <Welcome />} />}

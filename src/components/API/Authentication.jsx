@@ -1,5 +1,8 @@
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/authSlice";
 
 const API_key = "AIzaSyC_T56zHD0P7_bI1MwqhUjBNCpO46JlbC8";
+
 
 const Authenticate= async (email, password, authmode )=>{
     let authEndpoint = authmode? "signUp" :"signInWithPassword";
